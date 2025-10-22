@@ -1,2 +1,2 @@
 # user_service
-Microservice for user managment for Bazarteer system
+Microservice for user management for Bazarteer system
