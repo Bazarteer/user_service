@@ -23,6 +23,8 @@ public class User {
     private String surname;
     @Field(name = "username")
     private String username;
+    @Field(name = "password")
+    private String password;
     @Field(name = "auth_type")
     private AuthType auth_type;
     @Field(name = "bio")
@@ -36,11 +38,11 @@ public class User {
 
     public User() {}
 
-    public User(String Id, String name, String surname, String username, AuthType auth_type, String bio, String image, int num_sales, List<FollowedUser> following){
-        this.Id = Id;
+    public User(String name, String surname, String username, String password, AuthType auth_type, String bio, String image, int num_sales, List<FollowedUser> following){
         this.name = name;
         this.surname = surname;
         this.username = username;
+        this.password = password;
         this.auth_type = auth_type;
         this.bio = bio;
         this.image = image;
