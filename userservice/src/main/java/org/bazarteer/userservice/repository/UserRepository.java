@@ -14,6 +14,9 @@ public interface UserRepository extends MongoRepository<User, String>{
 
     public Optional<User> findById(String Id);
 
+    @Query("{ 'username': ?0 }")
+    public Optional<User> findByUsername(String username);
+
     @Query("{ 'username': {$regex: ?0, $options: 'i'} }")
-    public List<User> findByUsername(String username);
+    public List<User> findByUsernameFuzz(String username);
 }

@@ -17,7 +17,7 @@ class UserRepositoryTest {
 
     @Test
     void testFindByUsernameRegex() {
-        List<User> users = userRepository.findByUsername("mar");
+        List<User> users = userRepository.findByUsernameFuzz("mar");
         users.forEach(System.out::println);
     }
 
