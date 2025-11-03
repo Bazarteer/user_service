@@ -12,7 +12,7 @@ public interface UserRepository extends MongoRepository<User, String>{
 
     public <S extends User> S save(S user);
 
-    public Optional<User> findById(String Id);
+    public Optional<User> findById(String id);
 
     @Query("{ 'username': ?0 }")
     public Optional<User> findByUsername(String username);

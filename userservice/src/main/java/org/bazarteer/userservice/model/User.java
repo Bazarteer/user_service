@@ -15,7 +15,7 @@ import lombok.Setter;
 public class User {
     
     @Id
-    private String Id;
+    private String id;
 
     @Field(name = "name")
     private String name;
@@ -54,14 +54,14 @@ public class User {
     public String toString() {
         return String.format(
             "User[id=%s, name='%s', surname='%s', username='%s', auth_type='%s', bio='%s', image='%s', num_sales='%s', following='%s']",
-            Id, name, surname, username, auth_type, bio, image, num_sales, following);
+            id, name, surname, username, auth_type, bio, image, num_sales, following);
     }
 }
 
 @Getter @Setter 
 class FollowedUser {
     @Field("id")
-    private String Id;
+    private String id;
     @Field("username")
     private String username;
     @Field("image") 
@@ -69,8 +69,8 @@ class FollowedUser {
 
     public FollowedUser() {}
 
-    public FollowedUser(String Id, String username, String image){
-        this.Id = Id;
+    public FollowedUser(String id, String username, String image){
+        this.id = id;
         this.username = username;
         this.image = image;
     }
@@ -80,7 +80,7 @@ class FollowedUser {
     public String toString() {
         return String.format(
             "User[id=%s, username='%s', image='%s']",
-            Id, username, image);
+            id, username, image);
     }
 }
 
