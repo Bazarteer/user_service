@@ -3,6 +3,7 @@ package org.bazarteer.userservice.service;
 import java.util.Optional;
 
 import org.bazarteer.userservice.model.ProductPublishedMessage;
+import org.bazarteer.userservice.model.OrderPlacedMessage;
 import org.bazarteer.userservice.model.User;
 import org.bazarteer.userservice.proto.UserServiceGrpc;
 import org.bazarteer.userservice.proto.UpdateRequest;
@@ -49,6 +50,10 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     public void handleProductPublished(ProductPublishedMessage message) {
         System.out.println("Test uspesen, dobil: " + message.getName());
+    }
+
+    public void handleOrderPlaced(OrderPlacedMessage message) {
+        System.out.println("Test uspesen, dobil id prodajalca: " + message.getSellerId());
     }
 
 }
