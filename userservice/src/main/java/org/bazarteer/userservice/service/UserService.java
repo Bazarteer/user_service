@@ -53,7 +53,18 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
     }
 
     public void handleOrderPlaced(OrderPlacedMessage message) {
-        System.out.println("Test uspesen, dobil id prodajalca: " + message.getSellerId());
+        try{
+            Optional<User> optionalUser = userRepository.findById(message.getSellerId());
+            if (optionalUser.isEmpty()){
+                return;
+            }
+            User user = optionalUser.get();
+            int num_sales = user.getNum_sales();
+            user.setNum_sales(num_sales + 1);
+            userRepository.save(user);
+        } catch (Exception e){
+            System.out.println("Exception for user: " + message.getSellerId() + e);
+        }
     }
 
 }
