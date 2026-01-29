@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: userservice
-        image: bazarteerregistry.azurecr.io/userservice:0.0.3
+        image: bazarteerregistry.azurecr.io/userservice:0.0.4
         ports:
         - containerPort: 8080
         - containerPort: 9090

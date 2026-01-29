@@ -6,6 +6,8 @@ option java_package = "org.bazarteer.userservice.proto";
 
 service UserService {
   rpc Update (UpdateRequest) returns (UpdateResponse);
+
+  rpc GetById (GetByIdRequest) returns (GetByIdResponse);
 }
 
 message UpdateRequest {
@@ -17,3 +19,19 @@ message UpdateRequest {
 message UpdateResponse {
   string userId = 1;
 }
+
+message GetByIdRequest {
+  string userId = 1;
+}
+
+message GetByIdResponse {
+  string id = 1;
+  string name = 2;
+  string surname = 3;
+  string username = 4;
+  string bio = 5;
+  string image = 6;
+  int32 num_sales = 7;
+}
+
+

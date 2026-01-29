@@ -6,6 +6,8 @@ import org.bazarteer.userservice.model.ProductPublishedMessage;
 import org.bazarteer.userservice.model.OrderPlacedMessage;
 import org.bazarteer.userservice.model.User;
 import org.bazarteer.userservice.proto.UserServiceGrpc;
+import org.bazarteer.userservice.proto.GetByIdRequest;
+import org.bazarteer.userservice.proto.GetByIdResponse;
 import org.bazarteer.userservice.proto.UpdateRequest;
 import org.bazarteer.userservice.proto.UpdateResponse;
 import org.bazarteer.userservice.repository.UserRepository;
@@ -20,6 +22,26 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Override
+    public void getById(GetByIdRequest req, StreamObserver<GetByIdResponse> responseObserver){
+        try{
+            Optional<User> optionalUser = userRepository.findById(req.getUserId());
+            if (optionalUser.isEmpty()) {
+                responseObserver.onError(Status.NOT_FOUND.withDescription("User not found").asRuntimeException());
+                return;
+            }
+
+            User user = optionalUser.get();
+            GetByIdResponse res =  GetByIdResponse.newBuilder().setId(user.getId()).setName(user.getName()).setSurname(user.getSurname()).setUsername(user.getUsername()).setBio(user.getBio()).setImage(user.getImage()).setNumSales(user.getNum_sales()).build();
+            responseObserver.onNext(res);
+            responseObserver.onCompleted();
+        } catch (Exception e) {
+            System.out.println(e);
+            responseObserver.onError(
+                    Status.INTERNAL.withDescription("Internal server error").withCause(e).asRuntimeException());
+        }
+    }
 
     @Override
     public void update(UpdateRequest req, StreamObserver<UpdateResponse> responseObserver) {
